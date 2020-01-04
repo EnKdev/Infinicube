@@ -58,3 +58,12 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*/.idea
+
+*.iml
+.idea/.idea.Infinicube/.idea/contentModel.xml
+.idea/.idea.Infinicube/.idea/encodings.xml
+.idea/.idea.Infinicube/.idea/indexLayout.xml
+.idea/.idea.Infinicube/.idea/modules.xml
+.idea/.idea.Infinicube/.idea/projectSettingsUpdater.xml
+.idea/.idea.Infinicube/.idea/workspace.xml

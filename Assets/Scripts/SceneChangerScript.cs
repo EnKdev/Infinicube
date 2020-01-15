@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class SceneChangerScript : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class SceneChangerScript : MonoBehaviour
 
     void ChangeScene()
     {
+        RandomFactScript.randFactTimer.Enabled = false;
         SceneManager.LoadSceneAsync(Scene);
     }
     

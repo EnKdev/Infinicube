@@ -8,8 +8,7 @@ using Random = System.Random;
 
 public class RandomFactScript : MonoBehaviour
 {
-    // Necessary things. (Private Fields
-    private Timer _randFactTimer;
+    // Necessary things. (Private Fields)
     private string[] _randFacts = new string[]
     {
         "This game was inspired by VVVVVV.",
@@ -23,6 +22,9 @@ public class RandomFactScript : MonoBehaviour
     private Random _rand;
     private string _fact;
     
+    // Necessary Things
+    public static Timer randFactTimer;
+    
     // Necessary Things. (Unity Fields)
     [Tooltip("Random Fact Text Box here")]
     public Text RandomFactText;
@@ -32,7 +34,7 @@ public class RandomFactScript : MonoBehaviour
     {
         RandomFactText = GetComponent<Text>();
         _rand = new Random();
-        _randFactTimer = new Timer();
+        randFactTimer = new Timer();
         SetupTimer();
         _fact = "Welcome to Infinicube!";
     }
@@ -47,10 +49,10 @@ public class RandomFactScript : MonoBehaviour
     private void SetupTimer()
     {
         var startTime = DateTime.Now;
-        _randFactTimer.Interval = 15000; // 15 seconds
-        _randFactTimer.Elapsed += RandFactTimerOnElapsed;
-        _randFactTimer.AutoReset = true;
-        _randFactTimer.Enabled = true;
+        randFactTimer.Interval = 15000; // 15 seconds
+        randFactTimer.Elapsed += RandFactTimerOnElapsed;
+        randFactTimer.AutoReset = true;
+        randFactTimer.Enabled = true;
         Debug.Log($"[Infinicube.MainMenu.RandFactTimer] Timer has been started at {startTime}");
     }
 

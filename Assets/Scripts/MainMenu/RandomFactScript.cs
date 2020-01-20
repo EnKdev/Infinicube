@@ -8,24 +8,25 @@ using Random = System.Random;
 
 public class RandomFactScript : MonoBehaviour
 {
-    // Necessary things. (Private Fields)
+    // Benötigte Felder
     private string[] _randFacts = new string[]
     {
         "This game was inspired by VVVVVV.",
         "Bananas always grow towards the sun.",
         "You are wasting your time reading these facts",
-        "Typing in 'takemetothepizza' won't trigger anything...",
+        "Typing in 'takemetothepizza' won't trigger anything... (like Literally.)",
         "Why jump when you can flip the gravity?",
         "Powered by Portals since... idk when.",
-        "Developer ran out of facts to display. Enjoy this waste of space."
+        "Developer ran out of facts to display. Enjoy this waste of space.",
+        "Falling in reverse since 2020!",
+        "Fun Fact: Gravity apparently is slow in here.",
+        "#Infinicube"
     };
     private Random _rand;
     private string _fact;
-    
-    // Necessary Things
+
     public static Timer randFactTimer;
     
-    // Necessary Things. (Unity Fields)
     [Tooltip("Random Fact Text Box here")]
     public Text RandomFactText;
 
@@ -42,14 +43,14 @@ public class RandomFactScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RandomFactText.text = _fact; // Write fact into the TextBox
+        RandomFactText.text = _fact;
     }
     
     // Custom methods
     private void SetupTimer()
     {
         var startTime = DateTime.Now;
-        randFactTimer.Interval = 15000; // 15 seconds
+        randFactTimer.Interval = 5000; // 5 seconds
         randFactTimer.Elapsed += RandFactTimerOnElapsed;
         randFactTimer.AutoReset = true;
         randFactTimer.Enabled = true;

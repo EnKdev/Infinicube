@@ -188,7 +188,7 @@ MonoBehaviour:
     where you are while trying to find your lost friends.
 
 
-    Copyright (c) 2019-2020 Team [Name here]'
+    Copyright (c) 2019-2020 Niklas Zeeb & Nicholas Hesse'
 --- !u!222 &427733650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Infinicube
 
-    Tech-Demo V0.1'
+    Tech-Demo V0.3'
 --- !u!222 &1054959724
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -497,7 +497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 1591776410}
-  Exit: {fileID: 0}
   Scene: MainMenu
 --- !u!1 &1661645040
 GameObject:

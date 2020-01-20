@@ -9,13 +9,11 @@ using Random = System.Random;
 public class SceneChangerScript : MonoBehaviour
 {
     public Button Button;
-    public Button Exit;
     public string Scene;
 
     private void Start()
     {
         Button.onClick.AddListener(ChangeScene);
-        Exit.onClick.AddListener(ExitGame);
     }
 
     void ChangeScene()
@@ -23,7 +21,13 @@ public class SceneChangerScript : MonoBehaviour
         RandomFactScript.randFactTimer.Enabled = false;
         SceneManager.LoadSceneAsync(Scene);
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            ExitGame();
+    }
+
     void ExitGame()
     {
         Application.Quit();

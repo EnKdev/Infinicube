@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,16 +9,18 @@ public class RandomFactScript : MonoBehaviour
     // Benötigte Felder
     private string[] _randFacts = new string[]
     {
-        "This game was inspired by VVVVVV.",
-        "Bananas always grow towards the sun.",
-        "You are wasting your time reading these facts",
-        "Typing in 'takemetothepizza' won't trigger anything... (like Literally.)",
-        "Why jump when you can flip the gravity?",
-        "Powered by Portals since... idk when.",
-        "Developer ran out of facts to display. Enjoy this waste of space.",
-        "Falling in reverse since 2020!",
-        "Fun Fact: Gravity apparently is slow in here.",
-        "#Infinicube"
+        "Dieses Spiel wurde von Terry Cavanagh's VVVVVV inspiriert.",
+        "Bananen wachsen immer zur Sonne entgegen.",
+        "Du verschwendest deine Zeit mit dem Lesen sinnloser Fakten",
+        "'takemetothepizza' wird nichts bringen. Schreib es also nicht. (Ernsthaft jetzt.)",
+        "Wieso springen wenn man die Gravitation ändern kann?",
+        "Powered by Portals seit... öhm... keine Ahnung",
+        "Entwickler fiel kein weiterer Random Fact mehr ein. Genieße die Platzverschwendung hier",
+        "Rückwärtsfallend seit 2020!",
+        "#Infinicube",
+        "Obamium",
+        "Ein Corona auf die Devs.",
+        "Limetten hier!"
     };
     private Random _rand;
     private string _fact;
@@ -37,7 +37,7 @@ public class RandomFactScript : MonoBehaviour
         _rand = new Random();
         randFactTimer = new Timer();
         SetupTimer();
-        _fact = "Welcome to Infinicube!";
+        _fact = "Willkommen zu Infinicube!";
     }
 
     // Update is called once per frame

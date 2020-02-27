@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 /// <summary>
 /// Der Player Controller, der dafür sorgt, dass wir unseren Player steuern können.
-/// Erstellt: 20.01.2020 - 16:33 Uhr
-/// Ersteller: Niklas Zeeb
-/// Revision: 2
+/// Erstellt: 27.02.2020
+/// Autoren: Niklas Zeeb, Nicholas Hesse
+/// Revision: 4
 /// </summary>
 
-public class PlayerController : MonoBehaviour //---------------INFINICUBE
+public class PlayerController : MonoBehaviour
 {
-    bool druecken = false;              //private bool gedrueckt;
+    bool druecken = false;
     bool amBoden = false;
     bool amDach = false;
     float y = 0;                          //Rauf und Runter
     float x = 0;                          //Links und Rechts
     SpriteRenderer spriteRenderer;
-    bool Antigravity = false;           //private bool flipped;
+    bool Antigravity = false;
     [SerializeField]
     Transform BodenCheck;               //für amBoden;
     [SerializeField]                    
@@ -29,29 +25,23 @@ public class PlayerController : MonoBehaviour //---------------INFINICUBE
     [SerializeField]
     float Schwerkraft = 1;
 
+    private Rigidbody2D rb2d;
 
-    //    // Benötigte Felder: <------------------------Are you sure about that?
-    //    private Rigidbody2D rb2d;
+    // Für Checkpoints
+    public delegate void DeathDelegate();
+    public event DeathDelegate onDeath;
 
-    //Nicholas' Start
+    void Death()
+    {
+        onDeath.Invoke();
+    }
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
-    //Nicklas' Start
-    //    void Start()
-    //    {
-    //        // Speichere eine Referenz zu einem Rigidbody2D Objekt damit wir später im Code
-    //        // darauf zugreifen können
-    //        rb2d = GetComponent<Rigidbody2D>();
-
-    //        rb2d.freezeRotation = true; // Verhindere irgendwelche Rotationen
-    //        flipped = false; // Mid-Air Gravitationsänderungen sollen hiermit verhindert werden
-    //        amBoden = true;
-    //        gedrueckt = false;
-    //    }
-
-    //Nicholas' Programm
+    
     private void FixedUpdate()
     {
         //aktuallisiert ob der spieler am boden ist.
@@ -110,60 +100,19 @@ public class PlayerController : MonoBehaviour //---------------INFINICUBE
         if (Input.GetKeyDown(KeyCode.Escape))
                 QuitGame();
     }
-    //Nicklas' HauptProgramm
-    //    private void Update()
-    //    {
-    //        // Speichere den momentanen Horizontalen Input in einem Float-Attribut names horizontal
-    //        float horizontal = Input.GetAxis("Horizontal");
-
-    //        // Initialisiere ein neues Objekt vom Typ Vector2 mit dem wir
-    //        // ein paar Bewegungswerte initialisieren
-    //        Vector3 tempVect = new Vector3(horizontal, 0, 0);
-
-    //        // Berechnungen für die Bewegungen usw...
-    //        tempVect = tempVect.normalized * geschwindigkeit * Time.deltaTime;
-
-    //        rb2d.MovePosition(rb2d.transform.position + tempVect);
-
-    //        // Wenn der Spieler die Taste S oder die Leertaste drückt, soll unser Sprite geflippt werden.
-    //        // Und die Gravitation soll umgekehrt werden
-    //        if (Input.GetKeyDown(KeyCode.S) && !flipped || Input.GetKeyDown(KeyCode.Space) && amBoden && !flipped)
-    //        {
-    //            SpriteFlip(); // Flippe den Sprite
-    //            rb2d.gravityScale = -5 * 3 * Time.deltaTime; // Kehre die Gravitation um
-    //            flipped = !flipped; // Boolcheck für Später
-    //            gedrueckt = !gedrueckt;
-    //        }
-    //        else if (Input.GetKeyDown(KeyCode.S) && flipped || Input.GetKeyDown(KeyCode.Space) && amBoden && flipped)
-    //        {
-    //            SpriteFlip(); // Flippe den Sprite
-    //            rb2d.gravityScale = 5 * 3 * Time.deltaTime; // Kehre die Gravitation um
-    //            flipped = !flipped; // Boolcheck für Später
-    //            gedrueckt = !gedrueckt;
-    //        }
-    //        else if (!(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Space)))
-    //        {
-    //            gedrueckt = !gedrueckt;
-    //        }
-
-    //        
-    //    }
-
-    //    // Diese Methode ist wichtig damit wir unseren Charakter einmal flippen können
-    //    void SpriteFlip()
-    //    {
-    //        Vector3 playerScale = transform.localScale;
-    //        playerScale.y *= -1;
-    //        transform.localScale = playerScale;
-    //    }
-
-
-
-    //würde ich drin lassen
-    //---------------------------------------------
-    // Damit das Spiel auch beendbar ist. 
+    
     void QuitGame()
     {
             Application.Quit();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Hazard")
+        {
+            Antigravity = false;
+            spriteRenderer.flipY = Antigravity;
+            rb2d.transform.position = Checkpoint.GetActiveCheckpointPosition();
+        }
     }
 }
